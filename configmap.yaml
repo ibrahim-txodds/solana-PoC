@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: solana-config
+  namespace: solana-namespace
+data:
+  # Network configuration
+  entrypoint: "entrypoint.testnet.solana.com:8001"
+  expectedBankHash: "ExampleBankHash"
+  knownValidators: "validator1.testnet.solana.com,validator2.testnet.solana.com"
+
+  # Validator configuration
+  rpcPort: "8899"
+  dynamicPortRange: "8000-8010"
+  ledgerLocation: "/solana/ledger"
+  snapshotIntervalSlots: "100"
+
+  # Performance tuning
+  limitLedgerSize: "true"
+  logLevel: "info" # Options: error, warn, info, debug, trace
+
+  # Custom configuration (as per your requirement)
+  customSetting1: "value1"
+  customSetting2: "value2"

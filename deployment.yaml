@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: solana-validator
+  namespace: solana-namespace
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: solana-validator
+  template:
+    metadata:
+      labels:
+        app: solana-validator
+    spec:
+      containers:
+        - name: solana-validator
+          image: solanalabs/solana:v1.7.11 # Use the appropriate version
+          args:
+            - validator
+            - --ledger
+            - $(LEDGER_LOCATION)
+            - --entrypoint
+            - $(ENTRYPOINT)
+            - --limit-ledger-size=$(LIMIT_LEDGER_SIZE)
+            - --rpc-port
+            - $(RPC_PORT)
+            - --dynamic-port-range
+            - $(DYNAMIC_PORT_RANGE)
+            - --log
+            - $(LOG_LEVEL)
+          envFrom:
+            - configMapRef:
+                name: solana-config
+          ports:
+            - containerPort: 8899
+          volumeMounts:
+            - name: solana-ledger
+              mountPath: /solana/ledger
+          resources:
+            requests:
+              memory: "4Gi"
+              cpu: "2000m"
+            limits:
+              memory: "8Gi"
+              cpu: "4000m"
+      volumes:
+        - name: solana-ledger
+          persistentVolumeClaim:
+            claimName: solana-ledger-pvc
