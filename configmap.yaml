@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: solana-config
-  namespace: solana-namespace
+  namespace: solana-test
 data:
   # Network configuration
   entrypoint: "entrypoint.testnet.solana.com:8001"
