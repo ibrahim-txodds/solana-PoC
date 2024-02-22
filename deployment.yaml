@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: solana-validator
-  namespace: solana-namespace
+  namespace: solana-test
 spec:
   replicas: 1
   selector:
