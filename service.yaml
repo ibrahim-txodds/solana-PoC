@@ -4,10 +4,9 @@ metadata:
   name: solana-validator-service
   namespace: solana-test
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - port: 8899
       targetPort: 8899
-      protocol: TCP
   selector:
     app: solana-validator
