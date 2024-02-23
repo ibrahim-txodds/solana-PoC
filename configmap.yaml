@@ -17,8 +17,6 @@ data:
 
   # Performance tuning
   limitLedgerSize: "true"
-  logLevel: "info" # Options: error, warn, info, debug, trace
+  logLevel: "warn" # Options: error, warn, info, debug, trace
 
   # Custom configuration (as per your requirement)
-  customSetting1: "value1"
-  customSetting2: "value2"
